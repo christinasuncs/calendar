@@ -9,6 +9,14 @@ const routes = [
     component: Home,
   },
   {
+    path: "/calendar",
+    name: "calendar",
+    component: () => import("@/views/Calendar.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/protected",
     name: "protected",
     component: () => import("@/views/Protected.vue"),
@@ -75,9 +83,9 @@ const router = createRouter({
   },
 })
 router.beforeEach((to) => {
-  if (to.meta.requiresAuth && !window.user) {
-    return { name: "login", query: { redirect: to.fullPath } }
-  }
+  // if (to.meta.requiresAuth && !window.user) {
+  //   return { name: "login", query: { redirect: to.fullPath } }
+  // }
 })
 
 export default router
